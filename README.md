@@ -33,14 +33,19 @@ Este proyecto utiliza **Google Colab Secrets** para manejar las credenciales de 
 ## 📂 Estructura del Proyecto
 
 * `/notebooks`: Contiene los análisis principales.
+* `/src`: Contiene los archivos de funciones extras en Python.
 * `README.md`: Información del proyecto.
 * `.gitignore`: Archivos excluidos del control de versiones.
 
-## 👤 Autor
+## 👤 Autores
 
-**[Tu Nombre]**
-* GitHub: [@TuUsuario](https://github.com/TuUsuario)
-* LinkedIn: [Tu Perfil](https://linkedin.com/in/tuperfil)
+**[
+Verónica Chicaiza,
+Deysi Jaque,
+Fernando Siguenza,
+Ricardo Cartagena,
+Cristhian Castro
+]**
 
 ---
-*Este proyecto fue desarrollado con fines educativos/profesionales.*
+*Este proyecto fue desarrollado con fines educativos.*
