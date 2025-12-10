@@ -1,26 +1,39 @@
 import requests
 import json
 import os
+import json
+import os
+try:
+    from google.colab import userdata
+except ImportError:
+    userdata = None
 
 BASE_URL = "http://maestria.optimusec.com/back/public"
+
+def get_secret(key):
+    # Buscar en archivo secrets.json (Entorno Local)
+    if os.path.exists('secrets.json'):
+        with open('secrets.json', 'r') as f:
+            data = json.load(f)
+            return data.get(key)
+
+    # Buscar en Google Colab Secrets (Entorno Nube)
+    if userdata:
+        try:
+            return userdata.get(key)
+        except:
+            pass
 
 def login():
     token = False
     _url = BASE_URL + '/admin/auth/login'
     
-    # Cargar credenciales desde secrets.json
-    try:
-        with open(os.path.join(os.path.dirname(__file__), 'secrets.json')) as f:
-            secrets = json.load(f)
-        login = secrets['login']
-        password = secrets['password']
-    except (FileNotFoundError, KeyError) as e:
-        print(f"Error al cargar las credenciales desde secrets.json: {e}")
-        return None
+    # Cargar credenciales
+    _API_KEY = get_secret('API_KEY')
 
     payload = {
-        'login': login,
-        'password': password
+        'login': 'maestria',
+        'password': _API_KEY
     }
 
     response = requests.post(_url, data=payload)
