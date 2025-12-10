@@ -12,8 +12,8 @@ BASE_URL = "http://maestria.optimusec.com/back/public"
 
 def get_secret(key):
     # Buscar en archivo secrets.json (Entorno Local)
-    if os.path.exists('secrets.json'):
-        with open('secrets.json', 'r') as f:
+    if os.path.exists('../src/secrets.json'):
+        with open('../src/secrets.json', 'r') as f:
             data = json.load(f)
             return data.get(key)
 
