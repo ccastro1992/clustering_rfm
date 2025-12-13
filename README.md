@@ -1,7 +1,6 @@
 # [Analisis RFM Estacional de Floricola]
 
 ![Python Version](https://img.shields.io/badge/Python-3.x-blue)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/[TU_USUARIO]/[TU_REPO]/blob/main/[NOMBRE_DEL_NOTEBOOK].ipynb)
 
 ## 📄 Descripción
 
