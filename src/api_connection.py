@@ -41,7 +41,7 @@ def login():
         try:
             token = response.json()['data']['token']
         except (KeyError, TypeError, requests.exceptions.JSONDecodeError) as e:
-            print(f"Error al extraer el token de la respuesta: {e}")
+            print(f"***** ERROR: al extraer el token de la respuesta: {e} *****")
             print("Texto de la respuesta:", response.text)
             return False
     else:

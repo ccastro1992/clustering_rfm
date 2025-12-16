@@ -34,7 +34,7 @@ def get_ventas():
                     print("No se pudo decodificar la respuesta como JSON.")
                     print("Texto de la respuesta:", response_get.text)
             else:
-                print(f"La solicitud GET falló con el código de estado: {response_get.status_code}")
+                print(f"***** ERROR: La solicitud GET falló con el código de estado: {response_get.status_code} *****")
                 print("Respuesta:", response_get.text)
 
     return data
