@@ -45,7 +45,7 @@ def login():
             print("Texto de la respuesta:", response.text)
             return False
     else:
-        print(f"La solicitud falló con el código de estado: {response.status_code}")
+        print(f"***** ERROR: La solicitud FALLÓ con el código de estado: {response.status_code} *****")
         print("Respuesta:", response.text)
         return False
 
