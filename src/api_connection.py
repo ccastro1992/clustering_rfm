@@ -43,8 +43,10 @@ def login():
         except (KeyError, TypeError, requests.exceptions.JSONDecodeError) as e:
             print(f"Error al extraer el token de la respuesta: {e}")
             print("Texto de la respuesta:", response.text)
+            return False
     else:
         print(f"La solicitud falló con el código de estado: {response.status_code}")
         print("Respuesta:", response.text)
+        return False
 
     return token
