@@ -10,6 +10,7 @@ def get_ventas():
 
     if token:
         for i in [2020, 2021, 2022, 2023, 2024, 2025]:
+            start_time = time.time()
             # Parametros
             params = {
                 "finicio": "%s-01-01" % i,
@@ -22,19 +23,26 @@ def get_ventas():
             }
 
             # Peticion GET
-            response_get = requests.get(_url_get, headers=headers, params=params)
+            try:
+                response_get = requests.get(_url_get, headers=headers, params=params, timeout=60) # Timeout de 60 segundos
 
-            # Respuesta
-            if response_get.status_code == 200:
-                try:
-                    data_response = response_get.json()['data']
-                    data.extend(data_response)
-                    print('Datos para año %s: %s' % (i, len(data_response)))
-                except requests.exceptions.JSONDecodeError:
-                    print("No se pudo decodificar la respuesta como JSON.")
-                    print("Texto de la respuesta:", response_get.text)
-            else:
-                print(f"***** ERROR: La solicitud GET falló con el código de estado: {response_get.status_code} *****")
-                print("Respuesta:", response_get.text)
+                # Respuesta
+                if response_get.status_code == 200:
+                    try:
+                        data_response = response_get.json()['data']
+                        data.extend(data_response)
+                        end_time = time.time()
+                        print(f'Datos para año {i}: {len(data_response)} registros. Tomó {end_time - start_time:.2f} segundos.')
+                    except requests.exceptions.JSONDecodeError:
+                        print("No se pudo decodificar la respuesta como JSON.")
+                        print("Texto de la respuesta:", response_get.text)
+                else:
+                    print(f"***** ERROR: La solicitud GET falló con el código de estado: {response_get.status_code} *****")
+                    print("Respuesta:", response_get.text)
+            except requests.exceptions.Timeout:
+                print(f"***** TIMEOUT: La solicitud para el año {i} excedió el tiempo de espera de 60 segundos. *****")
+            except requests.exceptions.RequestException as e:
+                print(f"***** ERROR de red: Ocurrió un error en la solicitud para el año {i}: {e} *****")
+
 
     return data
