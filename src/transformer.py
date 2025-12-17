@@ -53,7 +53,7 @@ def clean_data(df):
     df_filtered = df_filtered.drop_duplicates().reset_index(drop=True)
 
     # Guardamos la data limpia
-    save_clean_data(df_filtered)
+    save_clean_data(payload=df_filtered.copy())
 
     return df_filtered
 
